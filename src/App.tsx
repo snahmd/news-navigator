@@ -9,18 +9,25 @@ import { useState } from "react";
 // }
 
 const APIKey: string = "5e5e4c31ffa647289c9308889c58f985";
+import data from "./place_holder_data.json";
 
 function App() {
+  console.log(data);
   const [news, setNews] = useState([]);
   const fetchNews = (search: string, sort: string, lang: string) => {
-    fetch(
-      `https://newsapi.org/v2/everything?q=${search}&from=2024-09-20&sortBy=${sort}&language=${lang}&apiKey=${APIKey}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setNews(data.articles);
-      })
-      .catch((error) => console.log(error));
+    // check if is it local host
+    if (window.location.hostname === "localhost") {
+      fetch(
+        `https://newsapi.org/v2/everything?q=${search}&from=2024-09-20&sortBy=${sort}&language=${lang}&apiKey=${APIKey}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setNews(data.articles);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setNews(data.articles as any);
+    }
   };
 
   return (
