@@ -1,24 +1,45 @@
-function Search() {
+import { useState } from "react";
+function Search({ fetchNews: fetchNews }: { fetchNews: any }) {
+  // form degistiginde state'i guncelle
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(e);
+    const search = e.currentTarget.search.value;
+    const lang = e.currentTarget.lang.value;
+    const sort = e.currentTarget.sortNews.value;
+    // my_func("aranan deger", "popularity", "en");
+
+    console.log(search);
+    console.log(lang);
+    console.log(sort);
+    fetchNews(search, sort, lang);
+  };
+
   return (
-    <section className="border border-white flex flex-col items-center justify-center gap-4 p-4 mx-96 my-4">
-      <h1 className="text-red-600">NewsNavigator</h1>
+    <section className="border border-white flex flex-col items-center justify-center gap-4 p-4  my-4 rounded-2xl">
+      <h1 className="text-white font-semibold text-4xl">NewsNavigator</h1>
       <form
+        onSubmit={handleSubmit}
         action=""
-        className="flex flex-col justify-center items-center gap-4 w-2/5"
+        className="flex flex-col md:flex-row justify-center items-center gap-4 text-white "
       >
-        <div>
+        <div className="w-full flex flex-col">
           <label htmlFor="search">Search:</label>
-          <input type="text" id="search" name="search" />
+          <input
+            className="text-slate-600 p-2 rounded-lg"
+            type="text"
+            id="search"
+            name="search"
+          />
         </div>
-        <div>
-          <label htmlFor="lang" id="lang">
-            Language:
-          </label>
-          <select name="lang" id="lang">
-            <option value="ar">Arabisch</option>
-            <option value="de" selected>
-              Deutsch
-            </option>
+        <div className="w-full flex flex-col">
+          <label htmlFor="lang">Language:</label>
+          <select
+            className="text-slate-600 p-2 rounded-lg"
+            name="lang"
+            id="lang"
+          >
+            <option value="de">Deutsch</option>
             <option value="en">Englisch</option>
             <option value="es">Spanisch</option>
             <option value="fr">Französisch</option>
@@ -28,19 +49,27 @@ function Search() {
             <option value="no">Norwegisch</option>
             <option value="pt">Portugisisch</option>
             <option value="ru">Russisch</option>
+            <option value="ar">Arabisch</option>
             <option value="sv">Schwedisch</option>
             <option value="zh">Chinesisch</option>
           </select>
         </div>
-        <div>
+        <div className="w-full flex flex-col">
           <label htmlFor="sortNews">Sort:</label>
-          <select name="sortNews" id="sortNews">
+          <select
+            className="text-slate-600 p-2 rounded-lg"
+            name="sortNews"
+            id="sortNews"
+          >
             <option value="relevancy">Relevancy</option>
             <option value="popularity">Popularity</option>
             <option value="publishedAt">First Published</option>
           </select>
         </div>
-        <button type="submit" className="border border-white p-2">
+        <button
+          type="submit"
+          className="border border-white p-2 rounded-xl md:mt-6"
+        >
           Search
         </button>
       </form>
