@@ -1,11 +1,12 @@
 function Search({ fetchNews: fetchNews }: { fetchNews: any }) {
   // form degistiginde state'i guncelle
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(e);
-    const search = e.currentTarget.search.value;
-    const lang = e.currentTarget.lang;
-    const sort = e.currentTarget.sortNews.value;
+    const search = e.target[0].value;
+    const lang = e.target[1].value;
+    const sort = e.target[2].value;
 
     console.log(search);
     console.log(lang);

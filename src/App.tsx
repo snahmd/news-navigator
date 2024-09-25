@@ -27,9 +27,10 @@ function App() {
     <div className="flex flex-col justify-center items-center flex-wrap">
       <Search fetchNews={fetchNews} />
       <div className="flex flex-row flex-wrap gap-8 justify-center  items-center">
-        {news.map((item: any) => {
+        {news.map((item: any, i) => {
           return (
             <Card
+              key={i}
               title={item.title}
               image={item.urlToImage}
               description={item.description}
