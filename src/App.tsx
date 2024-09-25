@@ -1,6 +1,6 @@
 import Search from "./components/Search";
 import Card from "./components/Card";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 // interface fetchNews {
 //   search: string;
@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from "react";
 const APIKey: string = "5e5e4c31ffa647289c9308889c58f985";
 
 function App() {
-  const divReferansi = useRef(null);
   const [news, setNews] = useState([]);
   const fetchNews = (search: string, sort: string, lang: string) => {
     fetch(
@@ -28,7 +27,7 @@ function App() {
     <div className="flex flex-col justify-center items-center flex-wrap">
       <Search fetchNews={fetchNews} />
       <div className="flex flex-row flex-wrap gap-8 justify-center  items-center">
-        {news.map((item) => {
+        {news.map((item: any) => {
           return (
             <Card
               title={item.title}

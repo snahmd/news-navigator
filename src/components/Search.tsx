@@ -1,13 +1,11 @@
-import { useState } from "react";
 function Search({ fetchNews: fetchNews }: { fetchNews: any }) {
   // form degistiginde state'i guncelle
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e);
     const search = e.currentTarget.search.value;
-    const lang = e.currentTarget.lang.value;
+    const lang = e.currentTarget.lang;
     const sort = e.currentTarget.sortNews.value;
-    // my_func("aranan deger", "popularity", "en");
 
     console.log(search);
     console.log(lang);
